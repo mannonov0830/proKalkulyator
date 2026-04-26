@@ -63,8 +63,7 @@ window.addEventListener("keydown", function(event) {
     if ((key >= "0" && key <= "9") || "+-*/.".includes(key)) {
         bos(key);
     }
-    
-    // Enter bosilsa hisoblash
+
     if (key === "Enter") {
         event.preventDefault(); 
         hisoblash();
