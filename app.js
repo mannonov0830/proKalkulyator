@@ -77,4 +77,5 @@ window.addEventListener("keydown", function(event) {
     if (key === "Backspace") {
         display.value = display.value.slice(0, -1);
     }
+    
 });
