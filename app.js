@@ -1,50 +1,55 @@
-let display = document.getElementById("display");
-
+let display = document.getElementById('display')
 function bos(value) {
-    display.value += value;
+    display.value += value
 }
-
 function hisoblash() {
     let qiymat = display.value;
 
     let son = "";
-    let natija = 0;
-    let amal = "+";
+    let natija = null; 
+    let amal = null;
 
     for (let i = 0; i < qiymat.length; i++) {
         let belgi = qiymat[i];
 
-        // raqam bo‘lsa yig‘amiz
-        if (belgi >= "0" && belgi <= "9") {
+       
+        if ((belgi >= "0" && belgi <= "9") || belgi === ".") {
             son += belgi;
         }
 
-        // agar amal chiqsa
         if (belgi === "+" || belgi === "-" || belgi === "*" || belgi === "/") {
-
             let num = Number(son);
 
+            if (natija === null) {
+                natija = num; 
+            } else {
+                
+                if (amal === "+") natija += num;
+                if (amal === "-") natija -= num;
+                if (amal === "*") natija *= num;
+                if (amal === "/") natija /= num;
+            }
+
+            amal = belgi; 
+            son = "";     
+        }
+    }
+
+    
+    if (son !== "") {
+        let num = Number(son);
+        if (natija === null) {
+            natija = num;
+        } else {
             if (amal === "+") natija += num;
             if (amal === "-") natija -= num;
             if (amal === "*") natija *= num;
             if (amal === "/") natija /= num;
-
-            amal = belgi;
-            son = "";
         }
     }
 
-    // oxirgi sonni ham hisoblaymiz
-    let num = Number(son);
-
-    if (amal === "+") natija += num;
-    if (amal === "-") natija -= num;
-    if (amal === "*") natija *= num;
-    if (amal === "/") natija /= num;
-
     display.value = natija;
 }
-
-function tozalash() {
+function tozalash(params) {
     display.value = "";
 }
